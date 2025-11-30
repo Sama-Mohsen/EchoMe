@@ -1,112 +1,101 @@
-# **EchoMe – Real-Time Conversational Avatar System**
+# EchoMe — Multimodal Conversational Avatar System
 
-**Status:** ✅ Finished
+EchoMe is a fully local (offline) AI-driven avatar system that generates a lip-synced talking video using a static face image, a cloned voice sample, and a recorded user question.
+The backend integrates Whisper for transcription, Aya 8B for response generation, XTTS for voice synthesis, and Wav2Lip for realistic lip-sync.
+The frontend is built using React, Vite, and TailwindCSS.
 
-## **📌 Overview**
+## 1. Key Features
 
-EchoMe is a real-time AI avatar system designed to enable natural human–AI interaction. It listens to the user, processes speech, generates intelligent responses, and produces a fully synchronized talking-avatar video in real time.
+* Speech-to-text transcription using Whisper Large-v3
+* LLM-based response generation using Aya 8B (via Ollama)
+* Voice cloning and text-to-speech using XTTS v2
+* Lip-sync video generation using Wav2Lip
+* Fully offline execution
+* Modern UI using React + Vite + TailwindCSS
+* High privacy — all processing stays local
 
-## **✨ Key Features**
+## 2. System Architecture
 
-* **⚡ Real-Time Interaction**
-  Instant STT → LLM → TTS → lip-sync processing.
-* **🎤 High Speech-to-Text Accuracy**
-  Whisper provides robust transcription even in noisy environments.
-* **🗣️ Natural Voice Generation**
-  XTTS produces expressive and clear responses.
-* **👄 Realistic Lip-Sync Animation**
-  Wav2Lip synchronizes mouth movement with audio.
-* **🌍 Multilingual Support**
-  Works with Arabic, English, and more.
-* **🧩 Open-Source Pipeline**
-  Fully modular and customizable.
-
-## **🎯 Project Objectives**
-
-1. Provide smooth, human-like AI interaction.
-2. Generate accurate and context-aware responses.
-3. Produce realistic lip-sync avatar output.
-4. Ensure low latency and real-time performance.
-5. Build a clean, modular, open-source pipeline.
-
-## **🛠️ Technologies Used**
-
-### **🖥️ Backend**
-
-* Flask (Python)
-* REST API endpoints
-
-### **🤖 AI / ML Components**
-
-* Whisper — Speech-to-Text
-* Aya 8B — Language Model
-* XTTS — Text-to-Speech
-* Wav2Lip — Lip-sync Animation
-
-### **🧰 Supporting Tools**
-
-* CUDA / GPU Acceleration (RTX 3050)
-* NumPy, Librosa, Pillow
-* Git, Docker (optional), cURL/Postman
-
-## **📦 System Architecture**
+Processing pipeline:
 
 ```
-User Speech
-    ↓
-Whisper (STT)
-    ↓
-Aya 8B (LLM Response Generation)
-    ↓
-XTTS (Text-to-Speech)
-    ↓
-Wav2Lip (Lip-Sync Animation)
-    ↓
-Final Talking-Avatar Video Output
+Audio Input → Whisper → Aya LLM → XTTS → Wav2Lip → MP4 Output
 ```
 
-## **👥 Team & Roles**
+**Frontend:** React, Vite, TailwindCSS
+**Backend:** FastAPI, Python 3.10, Torch
+**Runtime Tools:** Ollama (Aya 8B), CUDA (optional)
 
-* Abdelrahman Mohammed Abdelalem – Speech Recognition
-* Ahmed ElSayed Ahmed – LLM Integration
-* Beshoy Emad Fawzy – Backend Development
-* Beshoy Gamal Wahba – Lip-Sync & Video Processing
-* Nada Ahmed Amin – UI/UX & Documentation
-* Sama Mohsen Mostafa – System Integration & Testing
+## 3. Project Structure
 
-## **🗂️ Project Milestones**
+```
+EchoMe_Project/
+│
+├── api/
+│   ├── main.py
+│   ├── pipeline.py
+│   └── utils.py
+│
+├── frontend/
+│   ├── src/
+│   │   ├── App.jsx
+│   │   └── components/
+│   ├── index.html
+│   ├── package.json
+│   └── tailwind.config.js
+│
+├── models/              # (Not included in repo)
+├── uploads/             # Temporary upload files
+├── outputs/             # Generated output files
+├── demo/                # Demo videos (added later)
+└── environment.yaml     # Conda environment
+```
 
-| Milestone | Description               | Status       |
-| --------- | ------------------------- | ------------ |
-| M1        | Pipeline Setup            | ✔️ Completed |
-| M2        | Whisper Integration       | ✔️ Completed |
-| M3        | Aya 8B Integration        | ✔️ Completed |
-| M4        | XTTS Integration          | ✔️ Completed |
-| M5        | Wav2Lip Module            | ✔️ Completed |
-| M6        | Full Pipeline Integration | ✔️ Completed |
-| M7        | Testing & Optimization    | ✔️ Completed |
-| M8        | Documentation & Demo      | ✔️ Completed |
-| M9        | Final Presentation        | ✔️ Completed |
+## 4. Installation
 
-## **📊 KPIs**
+### Backend Setup
 
-* High STT accuracy
-* Low pipeline latency
-* Precise lip-sync performance
-* Stable real-time operation
-* Complete documentation and clean architecture
+```bash
+conda env create -f environment.yaml
+conda activate echome
+uvicorn api.main:app --host 0.0.0.0 --port 8000
+```
 
-## **🔮 Future Work**
+### Frontend Setup
 
-* Improve avatar facial realism
-* Enhance response speed
-* Further latency reduction
-* Expanded multilingual capabilities
+```bash
+cd frontend
+npm install
+npm run dev
+```
 
-## **📜 License**
+## 5. How It Works
 
-To be added.
+1. User records an audio question
+2. Whisper transcribes the speech
+3. Aya 8B LLM generates a concise reply
+4. XTTS synthesizes the response using the cloned voice
+5. Wav2Lip creates a lip-synced talking video
+6. The frontend displays the final MP4 result
 
-## **🚀 Current Status**
+## 6. Use Cases
 
-All modules have been fully implemented, integrated, tested, and documented. The system is complete and ready for demonstration.
+* AI assistants
+* Virtual tutors
+* Interactive character systems
+* Customer service avatars
+* Accessibility tools
+* Creative applications
+
+## 7. Demo
+
+Demo videos will be stored in the `demo/` folder.
+More demos will be added soon.
+
+## 8. Contributing
+
+Contributions and improvements are welcome.
+
+## 9. License
+
+MIT License
